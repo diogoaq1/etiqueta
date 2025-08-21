@@ -1,2 +1,0 @@
-# etiqueta
-Etiquetas Impar
