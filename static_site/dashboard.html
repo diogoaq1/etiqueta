@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Dashboard</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+    <div class="container mt-5">
+        <h2 class="mb-4">📋 Dashboard de Notas Fiscais</h2>
+
+        <form method="POST" class="row g-3">
+            {{ form.hidden_tag() }}
+            <div class="col-md-4">
+                {{ form.nome_cliente.label(class="form-label") }}
+                {{ form.nome_cliente(class="form-control") }}
+            </div>
+            <div class="col-md-4">
+                {{ form.controle.label(class="form-label") }}
+                {{ form.controle(class="form-control") }}
+            </div>
+            <div class="col-md-4">
+                {{ form.emissao.label(class="form-label") }}
+                {{ form.emissao(class="form-control", type="date") }}
+            </div>
+            <div class="col-12">
+                {{ form.submit(class="btn btn-primary") }}
+            </div>
+        </form>
+
+        <hr>
+
+        <table class="table table-striped mt-4">
+            <thead class="table-dark">
+                <tr>
+                    <th>Cliente</th>
+                    <th>Número NF</th>
+                    <th>Data de Emissão</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for nota in notas_fiscais %}
+                <tr onclick="window.location='{{ url_for('visualizar_nota', controle=nota.controle) }}'" style="cursor:pointer;">
+                    <td>{{ nota.nome_cliente }}</td>
+                    <td>{{ nota.controle }}</td>
+                    <td>{{ nota.emissao.strftime('%d/%m/%Y') }}</td>
+                </tr>
+                {% else %}
+                <tr>
+                    <td colspan="3" class="text-center">Nenhuma nota encontrada.</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+    </div>
+</body>
+</html>
