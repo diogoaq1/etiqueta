@@ -1,0 +1,55 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sistema de Etiquetas NFe</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+</head>
+<body class="bg-light">
+
+    <div class="container py-5">
+        <!-- Título -->
+        <header class="mb-5 text-center">
+            <h1 class="display-5">📦 Sistema de Etiquetas de Notas Fiscais</h1>
+            <p class="lead">Projeto desenvolvido com <strong>Flask</strong>, <strong>SQLite</strong> e <strong>Bootstrap</strong> para geração de etiquetas com QR Code da chave NFe.</p>
+            <a href="{{ url_for('login') }}" class="btn btn-primary btn-lg mt-3">🔐 Acessar Login</a>
+        </header>
+
+        <!-- Funcionalidades -->
+        <section class="mb-5">
+            <h3>🔧 Funcionalidades</h3>
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item">Cadastro e login de usuários com autenticação</li>
+                <li class="list-group-item">Dashboard com filtros por nome, controle e data</li>
+                <li class="list-group-item">Visualização de etiquetas com dados da nota fiscal</li>
+                <li class="list-group-item">Geração automática de QR Code da chave NFe</li>
+                <li class="list-group-item">Painel administrativo para gerenciar usuários</li>
+            </ul>
+        </section>
+
+        <!-- Execução local -->
+        <section class="mb-5">
+            <h3>🚀 Como executar localmente</h3>
+            <ol class="list-group list-group-numbered">
+                <li class="list-group-item">Clone o repositório: <code>git clone https://github.com/seuusuario/seuprojeto.git</code></li>
+                <li class="list-group-item">Instale as dependências: <code>pip install -r requirements.txt</code></li>
+                <li class="list-group-item">Configure o arquivo <code>.env</code> com sua <code>SECRET_KEY</code></li>
+                <li class="list-group-item">Execute: <code>flask run</code></li>
+            </ol>
+        </section>
+
+        <!-- Deploy -->
+        <section class="mb-5">
+            <h3>🌐 Deploy</h3>
+            <p>Este projeto pode ser publicado em plataformas como <strong>Render</strong>, <strong>Railway</strong> ou <strong>Heroku</strong>. Veja instruções no README.</p>
+        </section>
+
+        <!-- Rodapé -->
+        <footer class="text-center text-muted">
+            &copy; {{ ano }} Desenvolvido por Diogo
+        </footer>
+    </div>
+
+</body>
+</html>
