@@ -22,7 +22,8 @@ def gerar_qrcode_chave_nfe(chave_nfe):
 
 # 🚀 Inicialização do Flask
 load_dotenv()
-app = Flask(__name__)
+# app = Flask(__name__)
+app = Flask(__name__, template_folder='caminho/para/templates')
 app.config['SECRET_KEY'] = os.getenv('SECRET_KEY') or secrets.token_hex(32)
 app.config['SQLALCHEMY_DATABASE_URI'] = 'sqlite:///users.db'
 app.config['SQLALCHEMY_BINDS'] = {
