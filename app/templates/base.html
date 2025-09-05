@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <title>{% block title %}Sistema{% endblock %}</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.10.5/font/bootstrap-icons.css">
+    <style>
+        body {
+            display: flex;
+            min-height: 100vh;
+        }
+        .sidebar {
+            width: 250px;
+            background-color: #0d6efd;
+            color: white;
+        }
+        .sidebar a {
+            color: white;
+            text-decoration: none;
+        }
+        .sidebar a:hover {
+            background-color: #0b5ed7;
+        }
+        .content {
+            flex-grow: 1;
+            padding: 20px;
+            background-color: #f8f9fa;
+        }
+    </style>
+</head>
+<body>
+
+    {% if user.is_authenticated %}
+    <div class="sidebar d-flex flex-column p-3">
+        <h4 class="mb-4">📦 Meu Sistema</h4>
+        <ul class="nav nav-pills flex-column">
+            <li class="nav-item mb-2">
+                <a href="{% url 'dashboard' %}" class="nav-link">
+                    <i class="bi bi-file-earmark-text"></i> Notas Fiscais
+                </a>
+            </li>
+
+            {% if user.is_staff %}
+            <li class="nav-item mb-2">
+                <a href="{% url 'admin_dashboard' %}" class="nav-link">
+                    <i class="bi bi-person-gear"></i> Administração
+                </a>
+            </li>
+            {% endif %}
+
+            <li class="nav-item mb-2">
+                <a href="{% url 'alterar_senha' %}" class="nav-link">
+                    <i class="bi bi-key"></i> Alterar Senha
+                </a>
+            </li>
+
+            <li class="nav-item mt-4">
+                <a href="{% url 'logout' %}" class="nav-link text-danger">
+                    <i class="bi bi-box-arrow-right"></i> Sair
+                </a>
+            </li>
+        </ul>
+
+        <div class="mt-auto pt-3 border-top">
+            <span class="text-white-50">Olá, {{ user.username }}</span>
+        </div>
+    </div>
+    {% endif %}
+
+    <div class="content">
+        {% block content %}{% endblock %}
+    </div>
+
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+    {% block scripts %}{% endblock %}
+</body>
+</html>

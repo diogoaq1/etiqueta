@@ -1,0 +1,88 @@
+{% extends "base.html" %}
+{% load static %}
+
+{% block title %}Etiqueta da Nota Fiscal{% endblock %}
+
+{% block content %}
+<style>
+    @media print {
+        body * {
+            visibility: hidden;
+        }
+        #etiqueta, #etiqueta * {
+            visibility: visible;
+        }
+        #etiqueta {
+            position: absolute;
+            left: 0;
+            top: 0;
+            width: 100mm;
+            height: 100mm;
+            padding: 5mm;
+            font-size: 10pt;
+            line-height: 1.3;
+        }
+        .no-print {
+            display: none;
+        }
+    }
+
+    #etiqueta {
+        border: 1px dashed #333;
+        padding: 9px;
+        margin: auto;
+        background-color: #fff;
+        max-width: 400px;
+        text-align: left;
+    }
+
+    .header-flex {
+        display: flex;
+        align-items: center;
+        justify-content: flex-start;
+        gap: 10px;
+        margin-bottom: 9px;
+    }
+
+    .header-flex img {
+        height: 20px;
+    }
+
+    .header-flex h4 {
+        margin: 0;
+        font-size: 10pt;
+        font-weight: bold;
+    }
+</style>
+
+<div class="container mt-4 text-center no-print">
+    <button onclick="window.print()" class="btn btn-success mb-3">🖨️ Imprimir Etiqueta</button>
+</div>
+
+<div id="etiqueta">
+    <div class="header-flex">
+        <img src="{% static 'img/logo.jpg' %}" alt="Logo Impar">
+        <h4>Impar Atacadista de Peças Ltda</h4>
+    </div>
+
+    <strong>Controle:</strong> {{ nota.controle }}<br>
+    <strong>Destinatário:</strong> {{ nota.nome_cliente }}<br>
+    <strong>Endereço:</strong> {{ nota.endereco }}, {{ nota.numero }} - {{ nota.bairro }}<br>
+    <strong>Cidade:</strong> {{ nota.cidade }} - {{ nota.uf }}<br>
+    <strong>CEP:</strong> {{ nota.cep }}<br>
+    <strong>Transportadora:</strong> {{ nota.transp }}<br>
+    <strong>Volume:</strong> {{ nota.vol }} volumes<br>
+    <strong>Observações:</strong> {{ nota.obs }}<br>
+
+    <div style="text-align: center; margin-top: 15px;">
+        <div style="display: inline-block; padding: 10px; border: 1px solid #ccc; border-radius: 8px; background-color: #f9f9f9;">
+            <img src="{% static qr_rel_url %}"
+                 alt="QR Code da Chave NFe"
+                 style="height: 80px;">
+            <div style="font-size: 10pt; margin-top: 5px; color: #555;">
+                Chave NFe: {{ nota.chave_nfe }}
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}
